@@ -1,0 +1,282 @@
+
+/* 프로필 이미지 있는곳 */
+.profile_image_section {
+    position: relative;
+
+  }
+
+.username {
+    bottom: 0;
+    color: #ffffff;
+    padding: 30px 15px 4px;
+    position: absolute;
+    width: 100%;
+    text-shadow: 1px 1px 2px #000000;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #2d2c41 100%); 
+}
+
+.profile_image {
+    border-radius: 4px 4px 0 0;
+}
+.username > h2 {
+    font-size: 27px;
+    margin: 31px 0 4px;
+    position: relative;
+    
+}
+.username > h2 small {
+    color: #ffffff;
+    font-family: open;
+    font-size: 13px;
+    font-weight: 400;
+    position: relative;
+}
+.username .fa{
+    color: #ffffff;
+    font-size: 20px;
+    margin: 0 0 0 4px;
+    position: static;
+}
+
+
+
+h1 {
+ 	color: #FFF;
+ 	font-size: 24px;
+ 	font-weight: 400;
+ 	text-align: center;
+ 	margin-top: 40px;
+ }
+
+
+ .profilebox {
+ 	width: 100%;
+ 	max-width: 400px;
+ 	margin: 20px auto 0px;
+  background: #FFF;
+  border-radius: 12px;
+ }
+
+
+
+/* 네비게이션 바*/
+.topnav {
+  overflow: hidden;
+  background-color: skyblue;
+  position:relative;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.topnav a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  background: skyblue;
+  color: #fff;
+  text-decoration: none;
+  
+}
+
+.topnav a:hover {
+  background-color: lightgreen;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: black;
+  color: white;
+}
+
+
+/* SNS Link 버튼 */
+
+.dropbtn {
+  background-color: skyblue;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  border-radius: 12px;
+  text-align: center;
+  
+  
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 100%;
+  overflow: auto;
+  box-shadow: 0px 16px 32px 0px rgba(0,0,0,0.2);
+  z-index: 5;
+}
+
+.links{
+
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown-content .fa {
+  padding: 15px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 10px 15px;
+
+}
+
+.dropdown-content .fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+.fa-tumblr {
+  background: #00b489;
+  color: white;
+}
+
+/*자기 소개 문구*/
+.intro_box {
+  margin: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  width: 60%;
+  border: 3px solid gray;
+  padding: 10px;
+  text-align: center;
+}
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  line-height: 1;
+  margin:auto;
+  width: 100%; 
+  }
+
+  .carousel-caption {
+    top: 0;
+    bottom: auto;
+}
+
+/*목표 나열을 위한 컬럼 나누기 */
+
+.column {
+  float: left;
+  width: 33.33%;
+  text-align: center;
+  
+}
+
+
+/*after은 맨 마지막 자식으로 의사 요소를 하나 생성 
+
+
+float 속성이 레이아웃에서 많이 사용한다고 하였는데, clear속성도 float를 레이아웃에서 사용하며 발생되는 문제를 해결하기 위해 많이 사용됩니다.
+
+float 속성을 적용한 태그는 붕 뜨며 정상적인 요소로 처리가 안되기 때문에
+아래에 나타나야 하는 내용이 부유된 태그의 중간에 나타나는 문제 및 상위 태그의 높이가 없어지는 문제 등이 발생하게 됩니다.
+
+테이블이라고 하면 동일한 간격으로 설정해줌 
+*/
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+/*사이드 네비게이션바 */
+
+.sidebar { 
+  width: 130px;
+  position: fixed;
+  z-index: 1;
+  top: 15%;
+  right: 5%;
+  background: #eee;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #2196F3;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: #064579;
+}
+
+
+/*구분선 */
+
+hr.rounded {
+  border-top: 8px solid #bbb;
+  border-radius: 5px;
+  margin:3% 3% 3% 3%;
+}
+
+.footer {
+  position: relative;
+  left: 10%;
+  bottom: 0;
+  width: 80%;
+  padding: 24px 0;
+  text-align: center;
+  color: white;
+  background: black;
+}
+
+.fa-github{
+
+  height: 24px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 4em;
+
+}
+
