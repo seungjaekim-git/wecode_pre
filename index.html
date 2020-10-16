@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Seungjae Kim's page</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <div class="topnav">
+    <a class="active" href="#home"><strong>자기소개</strong></a>
+    <a href="#news"><strong>퍼즐게임</strong></a>
+    <a href="#contact"><strong>추가1</strong></a>
+    <a href="#about"><strong>추가2</strong></a>
+  </div>
+
+
+  <div class = "sidebar">
+    <h3 style = "margin-left: 30%;" >
+  <strong>INDEX</strong>
+
+    </h3>
+    <ul id=menu>
+      <li><a href="#" id = "container" onclick="access_element(this.id);return false;">Intro</a>
+      <li><a href="#" id = "hobby_intro" onclick="access_element(this.id);return false;">취미</a>
+      <li><a href="#" id = "dream_intro" onclick="access_element(this.id);return false;">목표</a>
+    </ul>
+
+
+  </div>
+  <div class="container">
+
+    <div class="row">
+
+      <h1>WECODE 15기 사전스터디 Project <br><small>#코린이 #자기소개 #백엔드 개발자 희망 #26살 </small></h1>
+      <!-- Contenedor -->
+      <div id="profilebox" class="profilebox">
+
+        <div class="col col_4 profile_image_section">
+          <img class="img-responsive profile_image" alt="profile_image"
+            src="https://ca.slack-edge.com/TH0U6FBTN-U01BR8JJGQ6-8246639593d3-512">
+
+          <div class="username">
+            <h2>김승재 <small><i class="fa fa-map-marker"></i> 대한민국 서울</small></h2>
+            <p><i class="fa fa-briefcase"></i> Wecode 15기 공부중 ... </p>
+
+            <div class="dropdown">
+              <button onclick="myFunction()" class="dropbtn">SNS LINK</button>
+              <div id="myDropdown" class="dropdown-content">
+                <div class = "links">
+                  <a href="https://www.facebook.com/seungjae.kim.94" class="fa fa-facebook"></a>
+                  <a href="https://www.instagram.com/seungjae.kim.94/?hl=ko" class="fa fa-twitter"></a>
+                  <a href="https://www.instagram.com/seungjae.kim.94/?hl=ko" class="fa fa-instagram"></a>
+                  <a href="https://seungjae-kim.tistory.com/" class="fa fa-tumblr"></a>
+
+
+                </div>
+                
+              </div>
+            </div>
+
+            <script src="./js/index.js"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <div class = "intro_box">
+    <b>안녕하세요 저는 26살 김승재입니다
+      <br>
+
+    </b>
+    
+    현재 대한민국 서울에 살고있고
+
+    <br>
+
+    백엔드 개발자가 되고 싶어서 위코드에 들어오게 되었어요 ! 
+    <br>
+
+    아직 코딩을 잘 못하지만, 열심히 노력해서 다른 사람들에게 도움이 되는 서비스를 런칭하고 싶습니다 !
+  </div>
+  
+
+  <hr class="rounded">
+
+  <div class = "hobby_intro">
+
+    <p>
+
+      <h2 style = "text-align: center;maring-top: 3%;margin-bottom: 3%;"> <i>#나만의 취미</i> </h2>
+
+
+    </p>
+
+
+
+  </div>
+
+
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" style = "width: 50%; height : 400px; display: flex; justify-content: center; margin-left: 25%;margin-bottom: 3%;">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+  
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="kertlet.jpg" alt="Chania"  style = "height: fit-content; object-fit: contain;" >
+        <div class="carousel-caption">
+          <h3> <string>취미 1 :</string> 돈까스 맛집 탐방</h3>
+          <p style = "color:white;background-color: black;">돈가스는 항상 옳다 </p>
+        </div>
+      </div>
+  
+      <div class="item">
+        <div class="carousel-caption">
+          <h3> <string>취미 2 :</string> 고양이 사진 찍기</h3>
+          <p style = "color:white;background-color: black;">친한 친구랑 사진만 찍다가 서로 연애 못하는 중 ㅠ ... </p>
+        </div>
+        <img src="cat.jpg" alt="Chicago"  style ="height: fit-content; object-fit: contain;" >
+        
+      </div>
+  
+      <div class="item">
+        <img src="lol.jpg" alt="New York"  style = "object-fit: contain;" >
+        <div class="carousel-caption">
+          <h3> <string>취미 3 :</string> 리그오브레전드</h3>
+          <p style = "color:white;background-color: black;">티어는 실버지만, 마음만은 챌린져!  </p>
+        
+        </div>
+      </div>
+    </div>
+  
+    <!-- 오른쪽 왼쪽 버튼 알아서 코딩 되어있는듯 -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  <hr class="rounded">
+
+
+  <div class = "dream_intro" style = "margin-left: 5%;margin-right: 5%;margin-bottom: 5%;">
+
+    <p>
+      <h2 style = "text-align: center;maring-top: 3%;margin-bottom: 3%;"> <i>#위코드에서의 목표</i> </h2>
+    </p>
+
+    <div class="row">
+      <div class="column" >
+        <h4><strong>#1 : 기록하는 습관</strong> <i class="fa fa-pencil"></i></h4>
+        <p>항상 자신이 했던 것과 
+          
+          <br>생각한 것을 적는 습관 기르기 !
+          
+          <br>
+          나중에 내 포트폴리오에 
+          <br>
+          추가할 수도 있으니 1석2조
+        </p>
+      </div>
+      <div class="column" >
+        <h4><strong>#2 : 협업능력 </strong> <i class="fa fa-comments-o"></i></h4>
+        <p>개발자로써 커뮤니케이션 능력은 
+          
+          <br>굉장히 중요하다고 생각해요
+          
+          <br>
+          다른 사람들과 협업하면서  
+          <br>
+          어떻게 개발을 하는지 진하게 경험하고 싶습니다 ! 
+        </p>
+      </div>
+      <div class="column" >
+        <h4><strong>#3 : 개발자로 취직 </strong> <i class="fa fa-briefcase"></i></h4>
+        <p>위코드에 등록하신 모든 분들의 목표이죠 ㅠ
+          
+          <br>저 또한 좋은 회사를 가기 위해서는 
+          
+          <br>
+          좋은 실력이 갖춰져야 되기 때문에 
+          <br>
+          열심히 노력해보겠습니다 ! 
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+
+  
+
+  <div class="footer" style = "font-size: 24px;">
+    <a href = "https://github.com/seungjaekim-git/wecode_pre" alt = "SeungjaeKim's github Link"><i class="fa fa-github"></i>Check my work here ! </a>
+  </div>
+
+</body>
+
+</html>
