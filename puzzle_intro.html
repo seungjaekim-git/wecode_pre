@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Seungjae Kim's page</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+    <div class="topnav">
+        <a href="index.html"><strong>자기소개</strong></a>
+        <a class="active" href="#news"><strong>지뢰찾기 게임</strong></a>
+        <a href="#contact"><strong>추가1</strong></a>
+        <a href="#about"><strong>추가2</strong></a>
+    </div>
+
+    <style>
+
+        .easy, .medium, .hard {
+            background: url("https://previews.123rf.com/images/redkoala/redkoala1411/redkoala141100038/33549366-easy-medium-hard-level-with-stars-icons-set.jpg") no-repeat;
+            
+        }
+
+        .easy{
+
+            width: 240px;
+			height: 250px;
+			background-position: 0 0;
+      
+
+        }
+        
+        .medium{
+
+            width: 220px;
+            height: 250px;
+            background-position: -230px 0px;
+          
+        }
+
+        .hard{
+
+            width: 220px;
+            height: 250px;
+            background-position: -435px 0px;
+           
+
+        }
+
+        tr td{
+            transition: .2s;
+        }
+        tr td:hover{
+            transform: scale(1.1);
+        }
+        
+        
+        .center-screen {
+            display: flex; 
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            
+        }
+
+        .center_map{
+
+            align-items: center;
+            text-align: center;
+            
+        }
+
+        #intro_text{
+
+            font-size: x-large;
+            color: brown;
+        }
+
+        .tile-basic {
+            border: 1px solid black;
+            background: burlywood;
+        }
+
+        .tile-basic:hover {
+            
+        }
+
+        .tile-bomb {
+            border: 1px solid black;
+            background: red;
+        }
+
+        .tile-clear {
+            border: 1px solid black;
+            background: #dcdcdc;
+        }
+
+        .com {
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+        }
+
+    </style>
+
+    <br>
+
+
+    <p class = "center-screen" id = "game_zone">
+            
+        <strong><span id = "intro_text">게임의 난이도를 선택해주세요.</span></strong>
+        
+        <table class = "center-screen" id = "level">
+              <td class = "easy" >
+    
+              </td>
+              <td class = "medium">
+    
+              </td>
+    
+              <td class = "hard">
+    
+              </td>
+            </tr>
+          </table>
+          
+          <div id = minemap class = "center_map">
+
+
+          </div>
+          <br>
+            <div id ="restart_btn" class = "center-screen"></div>
+            
+          
+
+    </p>
+     
+    <script>
+    $(document).ready(function () {
+
+        // 난이도 선택시 기존 요소들 삭제및 지뢰찾기 게임 시작
+        $("table tr td").click(function(){
+            
+            // 난이도 선택과 동시에 게임시작 및 기존 난이도 선택 화면 제거
+            var txt = $(this).attr("class");
+
+            var element = document.getElementById("level");
+            
+            element.parentNode.removeChild(element);
+            document.getElementById("intro_text").remove();
+            
+
+            // 난이도 세팅 열 행 값들 증가 및 마인 수 증가
+            var x = 0;
+            var y = 0;
+            var game_on = true; // 게임 진행 확인용 변수
+
+            var arr = new Array(); // 화면에 표시될 지뢰의 데이터 모음 배열
+
+            var mine_location = new Array(); // 마인위치 확인용
+
+            if (txt == "easy"){
+                x += 5;
+                y += 5;
+
+            }else if (txt == "medium"){
+                x += 10;
+                y += 10;
+
+            }else{
+                x += 15;
+                y += 15;
+
+
+            }
+
+            gamestart(x,y);
+
+            function shuffle_index(array){
+
+                for (var i = array.length -1 ; i >0 ; i--){
+
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var saved = array[i];
+                    array[i] = array[j];
+                    array[j] = saved;
+
+                }
+            
+            }
+
+            function mineCheck(x1, y1) { //주위 8칸의 지뢰를 체크하는 함수
+                var mine = 0;
+
+                if (isMine(x1 - 1, y1 - 1)) {
+                    mine++;
+                };
+                if (isMine(x1, y1 - 1)){
+                    mine++;
+                };
+                if (isMine(x1 + 1, y1 - 1)){
+                    mine++;
+                };
+                if (isMine(x1 - 1, y1)){
+                    mine++;
+                };
+                if (isMine(x1 + 1, y1)){
+                    mine++;
+                };
+                if (isMine(x1 - 1, y1 + 1)){
+                    mine++;
+                } ;
+                if (isMine(x1, y1 + 1)){
+                    mine++;
+                };
+                if (isMine(x1 + 1, y1 + 1)){
+                    mine++;
+                };
+
+                return mine;
+            }
+
+            
+            function isMine(x2, y2) { // 마인인지 체크하는 함수
+                if (x2 < 0 || x2 >= x || y2 < 0 || y2 >= y){ // 포지션 에러 해결
+                    return false;
+                }else{
+                    if (arr[x2][y2] == -1){ // -1 == 지뢰임 그러면 참 리턴
+                        return true;
+
+                    }else{
+                        return false;
+                    } 
+                }
+
+            }
+
+            function spread_space(x3, y3) {          //클릭했을때 주변 마인이 없는 경우 재귀함수를 이용해서 퍼지는 방향으로 함 해당 블록근처에 마인이 있을경우는 멈춤
+                var around_count = mineCheck(x3, y3);  //주변마인체크
+
+                if (x3 < 0 || x3 >= x || y3 < 0 || y3 >= y) { // 포지션 에러 해결
+                    return 0; 
+                } else if (arr[x3][y3] != 100) { // 해당 블록이 초기화 상태가 아니면 넘어감 더이상 다가갈 필요가 없음 
+                    return 0; 
+                } else if (around_count != 0) {  // 주변에 마인이 있는 경우는 해당 블록을 보여줘야되니깐 재귀함수 미설정
+                    arr[x3][y3] = around_count; // 리스트 데이터 바꿈
+                    return 0;
+                } else {
+                    arr[x3][y3] = 300; // 재귀함수 발동
+                    return spread_space(x3 - 1, y3) + spread_space(x3, y3 - 1)+ spread_space(x3 + 1, y3) + spread_space(x3, y3 + 1);
+                }
+
+            }
+
+
+            // 박스 클릭 이벤트 처리
+            $("#minemap").on("click", "button", function () {
+                var locationX = $(this).attr("locationX");
+                var locationY = $(this).attr("locationY");
+
+                if (arr[locationX][locationY] == -1) { //만약 해당 위치의 데이터가 지뢰면 게임 종료
+                    for (var i = 0; i < x; i++) { 
+                        for (var j = 0; j < y; j++) {
+                            if (arr[i][j] != -1) {
+                                arr[i][j] = mineCheck(i, j);
+                            }
+                        }
+                    }
+                    
+                    
+                    game_on = false;
+
+                    alert("게임종료");
+
+                    $("#restart_btn").html("<button id = 'restart' class = 'center_map'>게임 재시작</button>")
+                    
+                    $("#restart").on("click", function () {
+                        location.reload(true);
+                    });
+
+
+                } else {
+
+                    spread_space(parseInt(locationX),parseInt(locationY));
+                    
+                }
+
+                console.log(arr);
+
+                var str = "";
+                var count = 0;
+                for (var i = 0; i < x; i++) {
+                    for (var j = 0; j < y; j++) {
+
+                        if (arr[i][j] == 100) {
+                            count += 1;
+                            str += "<Button tpye='button' val='' class='tile-basic basic com' locationX='" + i + "'locationY='" + j + "'></button>";
+                        } else if (arr[i][j] == -1) {
+                            
+                            if (game_on == true){
+
+                                str += "<Button tpye='button' val='' class='tile-basic mine com' locationX='" + i + "'locationY='" + j + "'></button>";
+                            }else{
+                                str += "<Button tpye='button' val='' class='tile-bomb mine com' locationX='" + i + "'locationY='" + j + "'></button>";
+                            }
+                        
+                        } else if (arr[i][j] == 300) {
+                            str += "<Button tpye='button' val='' class='tile-clear minwan com' locationX='" + i + "'locationY='" + j + "'></button>";
+                        } else {
+                            str += "<Button tpye='button' val='' class='tile-clear com' locationX='" + i + "'locationY='" + j + "''>" + arr[i][j] + "</button>";
+                        }
+
+                    }
+                    str += "<br>";
+                }
+                $("#minemap").html(str);
+                
+                if (count == x){
+
+                    alert("게임 클리어");
+                }
+
+            });
+
+
+
+            function gamestart(x,y) {
+
+                for (var i = 0; i < x; i++) {
+
+                    arr[i] = new Array();
+
+                    mine_location[i] = i;    // position = x 값 position의 해당값이 y의 값으로 지뢰 세팅
+                    
+                    for (var j = 0; j < y; j++) {
+                        arr[i][j] = 100; // 처음 지뢰 넣기 전 값을 100씩 세팅
+                    }
+                }
+
+
+                shuffle_index(mine_location); //지뢰 위치 랜덤하게 바꿈
+
+                for (var i = 0; i < x; i++) {
+                    arr[i][mine_location[i]] = -1;
+                    
+                }
+
+
+                console.log(mine_location); // 확인용 
+                console.log(arr); //  초기화 확인용
+                
+                
+                var str = "";
+                    for (var i = 0; i < x; i++) {
+                        for (var j = 0; j < y; j++) {
+
+                            str += "<Button tpye='button' val='' class='tile-basic basic com' locationX='" + i + "'locationY='" + j + "'></button>";
+                            
+
+                        }
+                        str += "<br/>";
+                    }
+                $("#minemap").html(str);
+
+
+
+            }
+
+        });
+    });
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>
